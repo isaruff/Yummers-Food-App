@@ -1,117 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:padding="8dp"
-    app:cardCornerRadius="20dp">
+    app:layoutDescription="@xml/item_food_cart_scene">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp">
 
         <ImageView
-            android:id="@+id/foodImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:src="@drawable/img_food"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/foodNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:fontFamily="@font/varela"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@id/foodImageView"
-            app:layout_constraintTop_toTopOf="@id/foodImageView"
-            tools:text="Fancy Salad" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Order Amount:"
-            android:id="@+id/orderAmountInfo"
-            android:fontFamily="@font/varela"
-            android:textColor="@color/primary_color_variant"
-            app:layout_constraintStart_toStartOf="@id/foodNameTextView"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/foodNameTextView"
-            app:layout_constraintBottom_toTopOf="@id/totalAmountInfo"/>
-
-        <TextView
-            android:id="@+id/orderAmountText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/orderAmountInfo"
-            app:layout_constraintTop_toTopOf="@id/orderAmountInfo"
-            app:layout_constraintBottom_toBottomOf="@id/orderAmountInfo"
-            tools:text="5"
-            android:fontFamily="@font/varela"
-            android:textSize="20sp"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/secondary_color"/>
-
-        <TextView
-            android:id="@+id/currencyTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/varela"
-            android:text="$"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@id/totalAmountInfo"
-            app:layout_constraintTop_toTopOf="@id/totalAmountInfo"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/totalAmountInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Amount:"
-            android:textSize="20sp"
-            android:fontFamily="@font/varela"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="@id/foodImageView"
-            app:layout_constraintStart_toStartOf="@id/foodNameTextView"
-            android:textColor="@color/primary_color"/>
-
-        <TextView
-            android:id="@+id/totalAmountTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/varela"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@id/currencyTextView"
-            app:layout_constraintTop_toTopOf="@id/currencyTextView"
-            app:layout_constraintBottom_toBottomOf="@id/currencyTextView"
-            android:textStyle="bold"
-            tools:text="20" />
-
-        <ImageView
-            android:id="@+id/buttonCancelOrder"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_cancel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.cardview.widget.CardView>
 
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.motion.widget.MotionLayout>

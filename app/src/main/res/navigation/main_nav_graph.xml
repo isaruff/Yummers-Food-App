@@ -28,7 +28,7 @@
             android:id="@+id/action_favouritesFragment_to_foodDetailsFragment"
             app:destination="@id/foodDetailsFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/foodDetailsFragment"
         android:name="com.example.graduationproject.ui.fragments.FoodDetailsFragment"
         android:label="fragment_food_details"
@@ -36,5 +36,10 @@
         <argument
             android:name="foodData"
             app:argType="com.example.graduationproject.data.model.Food" />
-    </fragment>
+    </dialog>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.graduationproject.ui.fragments.BasketFragment"
+        android:label="fragment_basket"
+        tools:layout="@layout/fragment_basket" />
 </navigation>

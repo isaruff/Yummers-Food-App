@@ -18,14 +18,6 @@
     </style>
 
 
-    <style name="AppBottomSheetDialogTheme"
-        parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/background_dialog</item>
-    </style>
 
     <style name="SearchTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxCornerRadiusTopEnd">20dp</item>
@@ -56,4 +48,6 @@
         <item name="android:textSize">19sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+
 </resources>

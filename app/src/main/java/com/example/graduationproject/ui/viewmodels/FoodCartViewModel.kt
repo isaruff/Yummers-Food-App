@@ -5,19 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.graduationproject.data.datasource.FoodDataSource
 import com.example.graduationproject.data.model.*
 import com.example.graduationproject.data.network.NetworkState
-import com.example.graduationproject.data.repository.Repository
+import com.example.graduationproject.data.repository.ApiRepository
 import com.example.graduationproject.utils.NETWORK_ERROR
-import com.google.firebase.database.core.Repo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FoodCartViewModel @Inject constructor(private val repo: Repository): ViewModel() {
+class FoodCartViewModel @Inject constructor(private val repo: ApiRepository): ViewModel() {
 
     private val _foodCartList = MutableLiveData<List<FoodCart>>()
     val foodCartList : LiveData<List<FoodCart>> get() = _foodCartList

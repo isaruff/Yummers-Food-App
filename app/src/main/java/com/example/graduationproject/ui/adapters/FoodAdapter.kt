@@ -12,6 +12,7 @@ import com.example.graduationproject.R
 import com.example.graduationproject.data.model.Food
 import com.example.graduationproject.data.model.FoodWrapper
 import com.example.graduationproject.databinding.ItemFoodBinding
+import com.example.graduationproject.utils.loadImage
 
 class FoodAdapter(
     private val onClickListener: OnClickListener,
@@ -34,9 +35,9 @@ class FoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val wrapper = getItem(position)
         val currentItem = wrapper.food
-        Log.e("HERE BIND", "$wrapper")
         holder.binding.apply {
-            foodImageView.load("http://kasimadalan.pe.hu/foods/images/${currentItem.image}")
+           //foodImageView.load("http://kasimadalan.pe.hu/foods/images/${currentItem.image}")
+            foodImageView.loadImage(currentItem.image)
             foodNameTextView.text = currentItem.name
             priceTextView.text = currentItem.price.toString()
 
@@ -80,9 +81,5 @@ class FoodAdapter(
         ) = clickListener(data)
     }
 
-    class FavouritesClickListener(val clickListener: (Int) -> Unit) {
-        fun onClick(
-            id: Int
-        ) = clickListener
-    }
+
 }

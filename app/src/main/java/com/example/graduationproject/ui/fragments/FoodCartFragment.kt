@@ -29,6 +29,7 @@ class FoodCartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentFoodCartBinding.inflate(inflater,container,false)
+        cartViewModel.loadAllCarts(currentUser)
         return binding.root
     }
 
@@ -39,25 +40,9 @@ class FoodCartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cartViewModel.loadAllCarts(currentUser)
-        setupRecyclerView()
-
     }
 
 
-    private fun setupRecyclerView(){
-        val cancelClickListener = CartAdapter.CancelClickListener{cartId ->
-            cartViewModel.deleteCart(cartId, currentUser)
-            cartViewModel.loadAllCarts(currentUser)
-        }
 
-
-        cartViewModel.foodCartList.observe(viewLifecycleOwner){
-            cartAdapter.submitList(it)
-        }
-
-        cartAdapter = CartAdapter(cancelClickListener)
-        binding.foodCartRecyclerView.adapter = cartAdapter
-    }
 
 }

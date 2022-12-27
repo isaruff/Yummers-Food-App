@@ -1,7 +1,6 @@
 package com.example.graduationproject.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,30 +9,29 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.navGraphViewModels
 import coil.load
-import com.example.graduationproject.R
-import com.example.graduationproject.data.model.FoodCart
+import com.example.graduationproject.data.entity.FoodCartEntity
 import com.example.graduationproject.data.model.PostFoodCart
 import com.example.graduationproject.databinding.FragmentFoodDetailsBinding
 import com.example.graduationproject.ui.viewmodels.FoodDetailsViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FoodDetailsFragment : Fragment() {
+class FoodDetailsFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentFoodDetailsBinding? = null
     private val binding get() = _binding!!
-    private var orderCount = 0
     private val args: FoodDetailsFragmentArgs by navArgs()
     private val detailsViewModel: FoodDetailsViewModel by viewModels()
+    private var orderCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentFoodDetailsBinding.inflate(inflater, container,false)
+        _binding = FragmentFoodDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,27 +44,26 @@ class FoodDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setViews()
         setOrderCount()
-        setupBackButton()
         addFoodIntoCart()
     }
 
-    private fun setViews(){
+
+    private fun setViews() {
         binding.foodImage.load("http://kasimadalan.pe.hu/foods/images/${args.foodData.image}")
         binding.priceTextView.text = args.foodData.price.toString()
         binding.foodNameText.text = args.foodData.name
         binding.orderCountTextView.text = orderCount.toString()
-        binding.totalAmountTextView.text = "0"
     }
 
-    private fun setOrderCount(){
-        binding.buttonAdd.setOnClickListener{
+    private fun setOrderCount() {
+        binding.buttonAdd.setOnClickListener {
             orderCount++
             binding.orderCountTextView.text = orderCount.toString()
             binding.totalAmountTextView.text = (args.foodData.price * orderCount).toString()
         }
 
         binding.buttonMinus.setOnClickListener {
-            if (orderCount-1>=0){
+            if (orderCount - 1 >= 0) {
                 orderCount--
                 binding.orderCountTextView.text = orderCount.toString()
                 binding.totalAmountTextView.text = (args.foodData.price * orderCount).toString()
@@ -74,24 +71,24 @@ class FoodDetailsFragment : Fragment() {
         }
     }
 
-    private fun setupBackButton(){
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
-
-    private fun addFoodIntoCart(){
+    private fun addFoodIntoCart() {
 
         binding.addToCart.setOnClickListener {
-            val foodCartData = PostFoodCart(args.foodData.name,
-                args.foodData.image,
-                args.foodData.price,
-                args.foodData.category,
-                orderCount,
-                FirebaseAuth.getInstance().currentUser?.email!!
-            )
-            detailsViewModel.insertIntoCart(foodCartData)
-            Toast.makeText(activity, "Order is confirmed", Toast.LENGTH_SHORT).show()
+            if (orderCount > 0) {
+                val foodCartData = FoodCartEntity(
+                    args.foodData.id, args.foodData.name,
+                    args.foodData.image,
+                    args.foodData.price,
+                    args.foodData.category,
+                    orderCount,
+                    FirebaseAuth.getInstance().currentUser?.email!!
+                )
+                detailsViewModel.insertIntoDatabase(foodCartData)
+                Toast.makeText(activity, "Order is confirmed", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(activity, "Choose order amount", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
     }

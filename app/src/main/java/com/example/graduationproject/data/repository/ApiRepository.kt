@@ -3,7 +3,7 @@ package com.example.graduationproject.data.repository
 import com.example.graduationproject.data.datasource.FoodDataSource
 import com.example.graduationproject.data.network.NetworkState
 
-class Repository(private val fds: FoodDataSource) {
+class ApiRepository(private val fds: FoodDataSource) {
 
     suspend fun getAllFoods(): NetworkState = fds.getAllFoods()
 

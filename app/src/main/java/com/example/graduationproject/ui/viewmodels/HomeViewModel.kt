@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.graduationproject.data.model.FoodList
 import com.example.graduationproject.data.model.FoodWrapper
 import com.example.graduationproject.data.network.NetworkState
-import com.example.graduationproject.data.repository.Repository
+import com.example.graduationproject.data.repository.ApiRepository
 import com.example.graduationproject.utils.NETWORK_ERROR
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repo: Repository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val repo: ApiRepository) : ViewModel() {
 
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var myDatabaseRef: DatabaseReference

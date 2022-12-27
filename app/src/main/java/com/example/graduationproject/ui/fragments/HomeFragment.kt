@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var foodAdapter: FoodAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,7 +69,6 @@ class HomeFragment : Fragment() {
         )
         binding.foodRecyclerView.adapter = foodAdapter
         homeViewModel.foodList.observe(viewLifecycleOwner) {
-            Log.i("RECYCLERVIEW", "$it")
             foodAdapter.submitList(it)
             search(it)
         }

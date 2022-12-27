@@ -73,7 +73,7 @@
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:lottie_rawRes="@raw/empty_cart_animation"
+        app:lottie_rawRes="@raw/anim_empty_fav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emptyCartText"
         app:layout_constraintBottom_toBottomOf="parent"
